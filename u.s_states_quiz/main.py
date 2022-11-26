@@ -18,9 +18,18 @@ states = state_file.state.to_list()
 # check if the guess is among the 50 states
 score = 0
 correct_guesses = []
+unknown_states = []
 while score < 50:
     screen.title(f"{score}/{50} States")
     answer_state = screen.textinput(title="Guess", prompt="What's another state name?").title()
+    if answer_state == "Exit":
+        file_name = "states_to_learn.csv"
+        for state in states:
+            if state not in correct_guesses:
+                unknown_states.append(state)
+        save = pandas.DataFrame(unknown_states)
+        save.to_csv(file_name)
+        break
     if answer_state in states:
         if answer_state not in correct_guesses:
             x_val = state_file[state_file.state == answer_state].x
