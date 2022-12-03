@@ -27,3 +27,7 @@ class Paddle(Turtle):
         new_y = self.ycor() - 20
         if self.ycor() > -240:
             self.goto(x=self.xcord, y=new_y)
+     def exit(self):
+        if !self.showturtle():
+            return
+        
